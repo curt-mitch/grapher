@@ -70,7 +70,7 @@ Grapher.prototype.initialize = function (o) {
   if (!o.canvas) this.props.canvas = document.createElement('canvas');
   this.canvas = this.props.canvas;
 
-  var webGL = this._getWebGL();
+  var webGL = o.noWebGL ? null : this._getWebGL();
   if (webGL) {
     this.props.webGL = webGL;
     this.props.canvas.addEventListener('webglcontextlost', function (e) { this._onContextLost(e); }.bind(this));

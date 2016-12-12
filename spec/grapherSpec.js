@@ -156,4 +156,17 @@ describe('a grapher instance', function () {
     expect(grapher.links.length).toEqual(0);
     expect(grapher.nodes.length).toEqual(0);
   });
+
+  it('can skip checking for WebGL', function () {
+    var noWebGLOptions = {
+      width: 100,
+      height: 100,
+      noWebGL: true
+    };
+    spyOn(Grapher.prototype, '_getWebGL');
+    var grapher2 = new Grapher(noWebGLOptions);
+    expect(Grapher.prototype._getWebGL).not.toHaveBeenCalled();
+    expect(grapher2.props.webGL).not.toBeDefined();
+    grapher2 = undefined;
+  });
 });
